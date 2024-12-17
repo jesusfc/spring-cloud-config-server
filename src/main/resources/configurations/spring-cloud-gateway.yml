@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: spring-cloud-gateway
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+eureka:
+  client:
+    register-with-eureka: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
