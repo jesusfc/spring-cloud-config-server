@@ -10,6 +10,7 @@ spring:
       discovery:
         locator:
           enabled: true
+
 eureka:
   client:
     register-with-eureka: true
