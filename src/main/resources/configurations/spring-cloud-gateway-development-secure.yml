@@ -1,0 +1,31 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: spring-cloud-gateway
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+  zipkin:
+    base-url: http://localhost:9411
+    enabled: true
+    sleuth:
+      sampler:
+        probability: 1.0
+
+eureka:
+  client:
+    register-with-eureka: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
