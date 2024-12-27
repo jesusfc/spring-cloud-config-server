@@ -1,3 +1,0 @@
-## Should be an environment variable, move it
-encrypt:
-  key: mySuperProjectSecretKey

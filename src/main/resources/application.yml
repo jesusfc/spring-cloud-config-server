@@ -16,6 +16,10 @@ spring:
       name: mySuperUserName
       password: mySuperPassword
 
+## Should be an environment variable, move it
+encrypt:
+  key: mySuperProjectSecretKey
+
 ## Logging
 logging:
   level:
