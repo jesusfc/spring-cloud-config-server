@@ -1,25 +1,16 @@
 # Build the image with the following command:
 # Build application image
-FROM openjdk:17-ea-3-jdk as builder
+FROM eclipse-temurin:17-jdk
+
+# Set author
+LABEL Mentainer="jfcaraballo@gmail.com"
 
 # Set the working directory
 WORKDIR /application
-ADD maven/${project.build.finalName}.jar ${project.build.finalName}.jar
+COPY target/${project.build.finalName}.jar /application/${project.build.finalName}.jar
 
-#
-RUN java -Djarmode=layertools -jar ${project.build.finalName}.jar extract
-
-FROM openjdk:17-ea-3-jdk-slim
-LABEL PROJECT_NAME=${project.artifactId} PROJECT_ID=${project.groupId}
-
+# Expose the port
 EXPOSE 8888
 
-WORKDIR /application
-COPY --from=builder /application/dependencies/ ./
-COPY --from=builder /application/spring-boot-loader/ ./
-COPY --from=builder /application/snapshot-dependencies/ ./
-COPY --from=builder /application/application/ ./
-
 # Run the application
-ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
-
+ENTRYPOINT ["java", "-jar", "${project.build.finalName}.jar"]
