@@ -6,6 +6,9 @@ FROM eclipse-temurin:17-jdk
 # Set author
 LABEL Mentainer="jfcaraballo@gmail.com"
 
+# Set Expose port, just for information
+EXPOSE 8888
+
 # Set the working directory
 WORKDIR /application
 COPY target/${project.build.finalName}.jar /application/${project.build.finalName}.jar
